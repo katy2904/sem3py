@@ -18,17 +18,24 @@ for i in range(1, len(lst)):
     if lst[i] % 1 < minimum:
         minimum = lst[i] % 1
 
-print(round(maximum - minimum, 3))
+print(f'разница между максимальным и минимальным значением дробной части элементов: '
+      f'{round(maximum - minimum, 3)}')
 
-# решение 2
+# решение 2 - заморочилась с преобразованиями чтобы разобраться как это работает))
+#lst = [5.25, 9.755, 4.139, 0.862, 3.097] -использовала этот список для поиска ошибок преобразований
 
 for i in range(0, len(lst)):
-    lst[i] = int(str(lst[i]).split('.')[1])
-    if lst[i] < 100:
-        lst[i] *= 10
+    lst[i] = str(lst[i]).split('.')[1]
+    if len(lst[i]) == 1:
+        lst[i] = int(lst[i]) * 100
+    elif len(lst[i]) == 2:
+        lst[i] = int(lst[i]) * 10
+    else:
+        lst[i] = int(lst[i])
 
 maximum = max(lst)
 minimum = min(lst)
 
-print((maximum - minimum) / 1000)
+print(f'разница между максимальным и минимальным значением дробной части элементов: '
+     f'{(maximum - minimum) / 1000}')
 
